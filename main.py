@@ -1,3 +1,3 @@
 __author__ = 'eric.weast'
 
-test
+x = "test"
