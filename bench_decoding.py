@@ -21,5 +21,4 @@ for d in file_data:
 t2 = datetime.datetime.now()
 
 print(str(i))
-
 print(str(t2 -t1))
