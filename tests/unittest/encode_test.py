@@ -2,7 +2,7 @@ __author__ = 'eric.weast'
 
 import unittest
 import pyBencode.encode
-import pyBencode.errors
+import pyBencode.exceptions
 import collections
 
 
@@ -10,7 +10,7 @@ class EncodeTestCase(unittest.TestCase):
 
     def test_exception_when_strict(self):
         invalid_obj = None
-        with self.assertRaises(pyBencode.errors.EncodingError):
+        with self.assertRaises(pyBencode.exceptions.EncodingError):
             pyBencode.encode(invalid_obj, strict=True)
 
     def test_no_exception_when_not_strict(self):
