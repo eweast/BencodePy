@@ -1,33 +1,29 @@
 __author__ = 'eric.weast'
 
-from pyBencode.exceptions import DecodingError
 import collections
+
+from pyBencode.exceptions import DecodingError
 
 
 class Decoder:
     def __init__(self, data):
 
-        self.tokens = {
-            b'd': self.__parse_dict,
-            b'l': self.__parse_list,
-            b'i': self.__parse_int,
-            b'e':  self.__parse_terminator
-        }
-
         self.view = memoryview(data)
         self.length = len(data)
         self.idx = 0
+
+        self.frame = bytearray()
 
         self.decoded_dict = collections.OrderedDict()
         self.active_targets = list()
         self.current_key = None
 
     def __read(self, i):
-        b = self.view[self.idx: self.idx + i].tobytes()
+        v = self.view[self.idx: self.idx + i]
         self.idx += i
         if self.idx > self.length:
             raise DecodingError('Unexpected EOF.')
-        return b
+        return v
 
     @property
     def __current_target(self):
@@ -39,10 +35,16 @@ class Decoder:
     def decode(self) -> collections.OrderedDict:
         while self.idx < self.length:
             char = self.__read(1)
-            if char.decode('utf-8').isdigit():
+            if char in [b'1', b'2', b'3', b'4', b'5', b'6', b'7', b'8', b'9', b'0']:
                 self.__parse_str(char)
-            elif char in self.tokens:
-                self.tokens[char].__call__()
+            elif char == b'i':
+                self.__parse_int()
+            elif char == b'd':
+                self.__parse_dict()
+            elif char == b'l':
+                self.__parse_list()
+            elif char == b'e':
+                self.__parse_terminator()
             else:
                 raise DecodingError('Invalid token character at position ' + str(self.idx) + '.')
         return self.decoded_dict
@@ -86,25 +88,26 @@ class Decoder:
             raise DecodingError('Invalid terminator token ("e") at index ' + str(self.idx) + '.')
 
     def __parse_str(self, char):
-        frame = char
+        self.frame.extend(char)
         while True:
-            b = self.__read(1)
-            if b':' not in b:
-                frame += b
+            v = self.__read(1)
+            if v != b':':
+                self.frame.extend(v)
             else:
                 break
-        string = self.__read(int(frame))
+        string = self.__read(int(self.frame))
         self.__add_data(string)
+        self.frame.clear()
 
     def __parse_int(self):
-        frame = b''
         while True:
-            b = self.__read(1)
-            if b'e' not in b:
-                frame += b
+            v = self.__read(1)
+            if v != b'e':
+                self.frame.extend(v)
             else:
                 break
-        self.__add_data(int(frame))
+        self.__add_data(int(self.frame))
+        self.frame.clear()
 
     def __add_data(self, val):
         if isinstance(self.__current_target, dict):
