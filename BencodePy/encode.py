@@ -1,4 +1,4 @@
-from pyBencode import EncodingError
+from BencodePy import EncodingError
 
 def encode(obj, encoding='utf-8', strict=True):
     coded_bytes = b''

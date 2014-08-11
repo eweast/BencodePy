@@ -1,10 +1,10 @@
-pyBencode
+BencodePy
 =========
 A small Python 3 library for encoding and decoding Bencode data licensed under the GPLv2.
 
 Overview
 ----
-Although Bencode is mainly, if not exclusively, used for BitTorrent metadata (.torrent) files, this library seeks to provide a generic means of transforming Bencode from/to Python data structures independent beyond torrent files.
+Although Bencoding is mainly, if not exclusively, used for BitTorrent metadata (.torrent) files, this library seeks to provide a generic means of transforming Bencode from/to Python data structures independent of torrent files.
 
 
 Quickstart

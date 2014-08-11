@@ -1,6 +1,6 @@
 import collections
 
-from pyBencode.exceptions import DecodingError
+from BencodePy.exceptions import DecodingError
 
 
 class Decoder:
