@@ -12,10 +12,34 @@ provide a generic means of transforming Bencode from/to Python data structures i
 `pip install bencodepy`
 
 ### Encode
-todo
+```python
+from bencodepy.encode import encode
+
+mydata = { 'keyA': 'valueA' } #example data
+
+bencoded_data = encode(mydata)
+```
 
 ### Decode
-todo
+
+From bytes...
+```python
+from bencodepy.decode import decode
+
+mydata = b'd4:KeyA6:valueAe'
+
+my_ordred_dict = decode(mydata)
+ 
+```
+
+Alternatively from a file...
+```python
+from bencodepy.decode import decode_from_file
+
+my_file_path = 'c:\whatever'
+
+my_ordred_dict = decode_from_file(my_file_path)
+```
 
 ##Encoding
 Mappings: 
@@ -41,6 +65,11 @@ List  | list
 Integer  | int
 String  | bytes
 
+
+##TODO
+1. Decode is currently limited to Bencoded data that start with a root dictionary (`b'd...'`).
+2. More write unit tests for decoder.
+3. Write benchmarks for encoding.
 
 ##License
 Copyright © 2014 by Eric Weast

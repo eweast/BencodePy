@@ -1,4 +1,3 @@
-
 import unittest
 import bencodepy.encode
 import bencodepy.exceptions
