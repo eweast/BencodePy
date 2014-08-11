@@ -1,6 +1,6 @@
 
 from os import listdir
-import BencodePy.decoder
+import bencodepy.decoder
 import cProfile
 import pstats
 
@@ -26,7 +26,7 @@ print('Number of torrents: ' + str(len(file_data)))
 
 def bench():
     for d in file_data:
-        BencodePy.decoder.decode(d)
+        bencodepy.decoder.decode(d)
 
 cProfile.run('bench()', 'stats')
 p = pstats.Stats('stats')

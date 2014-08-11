@@ -7,10 +7,10 @@ if os.path.isfile('README.md'):
         description = f.read()
 
 setup(
-    name='BencodePy',
-    version='0.9',
-    packages=['BencodePy'],
-    url='https://github.com/eweast/BencodePy',
+    name='bencodepy',
+    version='0.9.1',
+    packages=['bencodepy'],
+    url='https://github.com/eweast/bencodepy',
     license='GPLv2',
     author='Eric Weast',
     author_email='eweast@hotmail.com',

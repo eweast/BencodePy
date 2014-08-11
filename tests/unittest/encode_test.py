@@ -1,7 +1,7 @@
 
 import unittest
-import BencodePy.encode
-import BencodePy.exceptions
+import bencodepy.encode
+import bencodepy.exceptions
 import collections
 
 
@@ -9,44 +9,44 @@ class EncodeTestCase(unittest.TestCase):
 
     def test_exception_when_strict(self):
         invalid_obj = None
-        with self.assertRaises(BencodePy.exceptions.EncodingError):
-            BencodePy.encode(invalid_obj, strict=True)
+        with self.assertRaises(bencodepy.exceptions.EncodingError):
+            bencodepy.encode(invalid_obj, strict=True)
 
     def test_no_exception_when_not_strict(self):
         invalid_obj = None
-        BencodePy.encode(invalid_obj, strict=False)
+        bencodepy.encode(invalid_obj, strict=False)
         self.assert_(True)
 
     def test_encode_str(self):
-        coded = BencodePy.encode('ThisIsAString')
+        coded = bencodepy.encode('ThisIsAString')
         self.assertEqual(coded, b'13:ThisIsAString', msg='Failed to encode string from str.')
 
     def test_encode_int(self):
-        coded = BencodePy.encode(42)
+        coded = bencodepy.encode(42)
         self.assertEqual(coded, b'i42e', msg='Failed to encode integer from int.')
 
     def test_encode_bytes(self):
         pass
         b = b"TheseAreSomeBytes"
-        coded = BencodePy.encode(b)
+        coded = bencodepy.encode(b)
         l = bytes(str(len(b)), 'utf-8')
         self.assertEqual(coded, l + b':' + b, msg='Failed to encode string from bytes.')
 
     def test_encode_list(self):
         l = ['a', 'b', 3]
-        coded = BencodePy.encode(l)
+        coded = bencodepy.encode(l)
         self.assertEqual(coded, b'l1:a1:bi3ee', msg='Failed to encode list from list.')
 
     def test_encode_tuple(self):
         t = ('a', 'b', 3)
-        coded = BencodePy.encode(t)
+        coded = bencodepy.encode(t)
         self.assertEqual(coded, b'l1:a1:bi3ee', msg='Failed to encode list from tuple.')
 
     def test_encode_dict(self):
         od = collections.OrderedDict()
         od['ka'] = 'va'
         od['kb'] = 2
-        coded = BencodePy.encode(od)
+        coded = bencodepy.encode(od)
         self.assertEqual(coded, b'd2:ka2:va2:kbi2ee', msg='Failed to encode dictionary from dict.')
 
     def test_encode_complex(self):
@@ -56,7 +56,7 @@ class EncodeTestCase(unittest.TestCase):
         od['KeyC'] = 3
         od['KeyD'] = 'AString'
         expected_result = b'd4:KeyAl9:listitemAd1:k1:vei3ee4:KeyBd1:k1:ve4:KeyCi3e4:KeyD7:AStringe'
-        coded = BencodePy.encode(od)
+        coded = bencodepy.encode(od)
         self.assertEqual(coded, expected_result, msg='Failed to encode complex object.')
         pass
 
