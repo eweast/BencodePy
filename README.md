@@ -10,9 +10,9 @@ provide a generic means of transforming Bencode from/to Python data structures i
 
 Quickstart
 ----
-
-'pip install bencodepy'
-
+::
+pip install bencodepy
+::
 Encoding
 ----
 
