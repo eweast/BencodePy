@@ -6,3 +6,4 @@ from bencodepy.exceptions import EncodingError
 from bencodepy.exceptions import DecodingError
 from bencodepy.encode import encode
 from bencodepy.decoder import decode
+from bencodepy.decoder import decode_from_file
