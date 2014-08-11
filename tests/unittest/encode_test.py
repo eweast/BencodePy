@@ -1,8 +1,8 @@
+
 import unittest
 import bencodepy.encode
-import bencodepy.exceptions
 import collections
-
+from bencodepy.exceptions import EncodingError
 
 class EncodeTestCase(unittest.TestCase):
 
