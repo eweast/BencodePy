@@ -1,4 +1,3 @@
-__author__ = 'eric.weast'
 
 import unittest
 import pyBencode.encode

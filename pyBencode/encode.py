@@ -1,5 +1,3 @@
-__author__ = 'eric.weast'
-
 from pyBencode import EncodingError
 
 def encode(obj, encoding='utf-8', strict=True):

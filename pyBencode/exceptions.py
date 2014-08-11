@@ -1,6 +1,3 @@
-__author__ = 'eric.weast'
-
-
 class EncodingError(Exception):
     def __init__(self, msg):
         self.msg = msg

@@ -1,4 +1,6 @@
-__author__ = 'eric.weast'
+__author__ = 'Eric Weast'
+__copyright__ = "Copyright 2014, Eric Weast"
+__license__ = "GPL v2"
 
 from pyBencode.exceptions import EncodingError
 from pyBencode.exceptions import DecodingError

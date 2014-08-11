@@ -1,5 +1,3 @@
-__author__ = 'eric.weast'
-
 import collections
 
 from pyBencode.exceptions import DecodingError

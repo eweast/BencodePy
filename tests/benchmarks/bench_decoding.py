@@ -1,4 +1,3 @@
-__author__ = 'eric.weast'
 
 from os import listdir
 import pyBencode.decoder
@@ -6,7 +5,7 @@ import cProfile
 import pstats
 
 
-folder_path = 'tests/tor testing samples/'
+folder_path = 'tests/torrent meta testing samples/'
 
 file_data = []
 file_sizes = []
