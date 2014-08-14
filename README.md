@@ -68,8 +68,8 @@ String  | bytes
 
 ##TODO
 1. Decode is currently limited to Bencoded data that start with a root dictionary (`b'd...'`).
-2. More write unit tests for decoder.
-3. Write benchmarks for encoding.
+2. Unit tests for decoder.
+3. Benchmarks for encoding.
 
 ##License
 Copyright © 2014 by Eric Weast
