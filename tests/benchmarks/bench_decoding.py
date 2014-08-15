@@ -1,7 +1,7 @@
 
 from os import listdir
 from os import path
-import bencodepy.decoder
+from bencodepy.decoder import decode
 import cProfile
 import pstats
 
@@ -16,7 +16,7 @@ for file_name in listdir(folder_path):
         data = f.read()
         file_data.append(data)
 
-file_data *= 640
+file_data *= 1300
 
 num_of_files = len(file_data)
 avg_size = sum(file_sizes) / 1024 / len(file_sizes)
@@ -28,7 +28,7 @@ print('Total size processed: %.3f MB' % (avg_size * num_of_files / 1024))
 
 def bench():
     for d in file_data:
-        bencodepy.decoder.decode(d)
+        decode(d)
 
 cProfile.run('bench()', 'stats')
 p = pstats.Stats('stats')
