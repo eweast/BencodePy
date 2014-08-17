@@ -8,3 +8,4 @@ from bencodepy.exceptions import EncodingError
 from bencodepy.exceptions import DecodingError
 from bencodepy.decoder import decode
 from bencodepy.decoder import decode_from_file
+from bencodepy.encode import encode

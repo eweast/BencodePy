@@ -2,7 +2,6 @@ from os import listdir
 from os import path
 import cProfile
 import pstats
-
 from bencodepy.decoder import decode
 
 

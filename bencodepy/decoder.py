@@ -1,6 +1,6 @@
 import collections
 
-from .temp.bencodepy.exceptions import DecodingError
+from bencodepy import DecodingError
 
 
 class Decoder:
@@ -36,7 +36,16 @@ class Decoder:
             raise DecodingError('Invalid token character (' + str(char) + ') at position ' + str(self.idx) + '.')
 
     def decode(self) -> collections.OrderedDict:
+        #if self.data[0:1] not in (b'd', b'l'):
+        #    self.__wrap_with_tuple()
         return self.__parse()
+
+    def __wrap_with_tuple(self):
+        l = list()
+        length = len(self.data)
+        while self.idx < length:
+            l.append(self.__parse())
+        return tuple(l)
 
     def __parse_dict(self) -> collections.OrderedDict:
         self.idx += 1
