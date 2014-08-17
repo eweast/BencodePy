@@ -3,7 +3,7 @@ A small Python 3 library for encoding and decoding Bencode data licensed under t
 
 ##Overview
 Although Bencoding is mainly, if not exclusively, used for BitTorrent metadata (.torrent) files, this library seeks to
-provide a generic means of transforming Bencode from/to Python data structures independent of torrent files.
+provide a generic means of encoding/decoding Bencode from/to Python data structures independent of torrent files.
 
 
 ##Quickstart
@@ -55,6 +55,7 @@ bytes  | String
 
 *Includes subtypes thus both dict and OrderedDict would be represented as Bencode dictionary.
 
+
 ##Decoding
 Mapping:
 
@@ -65,6 +66,13 @@ List  | list
 Integer  | int
 String  | bytes
 
+Bencode dictionaries are decoded as Python OrderedDict to preserve the order of elements. This is necessary to correctly
+calculate certain hash values such as that of a torrent file's Info Dictionary.
+
+The `decode()` method will always return an iterable. If the root element of the bencode data is not a dictionary or 
+list, `decode()` will wrap the all bencode elements in a tuple. Thus input data of `b'5:ItemA5:ItemB'` would yield
+a python tuple of `('ItemA', 'ItemB')`.
+  
 
 ##TODO
 1. Decode is currently limited to Bencoded data that start with a root dictionary (`b'd...'`).
@@ -75,4 +83,3 @@ String  | bytes
 Copyright © 2014 by Eric Weast
 
 Licensed under the [GPLv2](https://www.gnu.org/licenses/gpl-2.0.html "gnu.org")
-

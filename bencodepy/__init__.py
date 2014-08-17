@@ -1,5 +1,3 @@
-from bencodepy import encode
-
 __author__ = 'Eric Weast'
 __copyright__ = "Copyright 2014, Eric Weast"
 __license__ = "GPL v2"

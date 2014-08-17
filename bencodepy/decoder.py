@@ -1,6 +1,6 @@
-import collections
-
-from bencodepy import DecodingError
+from collections import OrderedDict
+from collections.abc import Iterable
+from . import DecodingError
 
 
 class Decoder:
@@ -9,18 +9,21 @@ class Decoder:
         self.data = data
         self.idx = 0
 
-    def __read(self, i) -> bytes:
+    def __read(self, i: int) -> bytes:
+        """Returns a set number (i) of bytes from self.data."""
         b = self.data[self.idx: self.idx + i]
         self.idx += i
         return b
 
-    def __read_to(self, terminator) -> bytes:
+    def __read_to(self, terminator: bytes) -> bytes:
+        """Returns bytes from self.data starting at index (self.idx) until terminator character."""
         i = self.data.index(terminator, self.idx)
         b = self.data[self.idx:i]
         self.idx = i + 1
         return b
 
-    def __parse(self):
+    def __parse(self) -> object:
+        """Selects the appropriate method to decode next bencode element and returns the result."""
         char = self.data[self.idx: self.idx + 1]
         if char in [b'1', b'2', b'3', b'4', b'5', b'6', b'7', b'8', b'9', b'0']:
             str_len = int(self.__read_to(b':'))
@@ -35,21 +38,24 @@ class Decoder:
         else:
             raise DecodingError('Invalid token character (' + str(char) + ') at position ' + str(self.idx) + '.')
 
-    def decode(self) -> collections.OrderedDict:
-        #if self.data[0:1] not in (b'd', b'l'):
-        #    self.__wrap_with_tuple()
+    def decode(self) -> Iterable:
+        """Start of decode process. Returns final results."""
+        if self.data[0:1] not in (b'd', b'l'):
+            self.__wrap_with_tuple()
         return self.__parse()
 
-    def __wrap_with_tuple(self):
+    def __wrap_with_tuple(self) -> tuple:
+        """Returns a tuple of all nested bencode elements."""
         l = list()
         length = len(self.data)
         while self.idx < length:
             l.append(self.__parse())
         return tuple(l)
 
-    def __parse_dict(self) -> collections.OrderedDict:
+    def __parse_dict(self) -> OrderedDict:
+        """Returns an Ordered Dictionary of nested bencode elements."""
         self.idx += 1
-        d = collections.OrderedDict()
+        d = OrderedDict()
         key_name = None
         while self.data[self.idx: self.idx + 1] != b'e':
             if key_name is None:
@@ -61,6 +67,7 @@ class Decoder:
         return d
 
     def __parse_list(self) -> list:
+        """Returns an list of nested bencode elements."""
         self.idx += 1
         l = []
         while self.data[self.idx: self.idx + 1] != b'e':
@@ -69,13 +76,14 @@ class Decoder:
         return l
 
 
-def decode_from_file(path: str):
+def decode_from_file(path: str) -> Iterable:
+    """Convenience function. Reads file and calls decode()."""
     with open(path, 'rb') as f:
         b = f.read()
-    decoder = Decoder(b)
-    return decoder.decode()
+    return decode(b)
 
 
-def decode(data: bytes):
+def decode(data: bytes) -> Iterable:
+    """Convenience function. Initializes Decoder class, calls decode method, and returns the result."""
     decoder = Decoder(data)
     return decoder.decode()
