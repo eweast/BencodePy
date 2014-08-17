@@ -1,9 +1,9 @@
-
 from os import listdir
 from os import path
-from bencodepy.decoder import decode
 import cProfile
 import pstats
+
+from temp.bencodepy.decoder import decode
 
 
 folder_path = '../torrent meta testing samples/'

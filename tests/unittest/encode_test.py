@@ -1,14 +1,14 @@
-
 import unittest
-import bencodepy.encode
 import collections
-from bencodepy.exceptions import EncodingError
+
+from temp import bencodepy
+
 
 class EncodeTestCase(unittest.TestCase):
 
     def test_exception_when_strict(self):
         invalid_obj = None
-        with self.assertRaises(bencodepy.exceptions.EncodingError):
+        with self.assertRaises(temp.bencodepy.exceptions.EncodingError):
             bencodepy.encode(invalid_obj, strict=True)
 
     def test_no_exception_when_not_strict(self):
