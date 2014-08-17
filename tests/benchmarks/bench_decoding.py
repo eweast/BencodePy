@@ -16,7 +16,7 @@ for file_name in listdir(folder_path):
         data = f.read()
         file_data.append(data)
 
-file_data *= 1300
+file_data *= 800
 
 num_of_files = len(file_data)
 avg_size = sum(file_sizes) / 1024 / len(file_sizes)
