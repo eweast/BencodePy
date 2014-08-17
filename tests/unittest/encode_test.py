@@ -1,7 +1,7 @@
 import unittest
 import collections
 
-from temp import bencodepy
+import bencodepy
 
 
 class EncodeTestCase(unittest.TestCase):

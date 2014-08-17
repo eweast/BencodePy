@@ -3,7 +3,7 @@ from os import path
 import cProfile
 import pstats
 
-from temp.bencodepy.decoder import decode
+from bencodepy.decoder import decode
 
 
 folder_path = '../torrent meta testing samples/'
