@@ -1,5 +1,4 @@
 cimport cython
-from collections.abc import Iterable
 
 cdef class Decoder:
     cdef public bytes data
@@ -30,5 +29,3 @@ cpdef object decode_from_file(str path)
 
 @cython.locals(d = Decoder)
 cpdef object decode(bytes data)
-
-

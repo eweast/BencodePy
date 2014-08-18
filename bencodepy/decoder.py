@@ -1,10 +1,10 @@
 from collections import OrderedDict
 from collections.abc import Iterable
-from . import DecodingError
+#from . import DecodingError
+import bencodepy
 
 
 class Decoder:
-
     def __init__(self, data: bytes):
         self.data = data
         self.idx = 0
@@ -13,14 +13,23 @@ class Decoder:
         """Returns a set number (i) of bytes from self.data."""
         b = self.data[self.idx: self.idx + i]
         self.idx += i
+        if len(b) != i:
+            raise bencodepy.DecodingError(
+                "Incorrect byte length returned between indexes of {0} and {1}. Possible unexpected End of File."
+                .format(str(self.idx), str(self.idx - i)))
         return b
 
     def __read_to(self, terminator: bytes) -> bytes:
         """Returns bytes from self.data starting at index (self.idx) until terminator character."""
-        i = self.data.index(terminator, self.idx)
-        b = self.data[self.idx:i]
-        self.idx = i + 1
-        return b
+        try:
+            # noinspection PyTypeChecker
+            i = self.data.index(terminator, self.idx)
+            b = self.data[self.idx:i]
+            self.idx = i + 1
+            return b
+        except ValueError:
+            raise bencodepy.DecodingError(
+                'Unable to locate terminator character "{0}" after index {1}.'.format(str(terminator), str(self.idx)))
 
     def __parse(self) -> object:
         """Selects the appropriate method to decode next bencode element and returns the result."""
@@ -35,13 +44,15 @@ class Decoder:
             return self.__parse_dict()
         elif char == b'l':
             return self.__parse_list()
+        elif char == b'':
+            raise bencodepy.DecodingError('Unexpected End of File at index position of {0}.'.format(str(self.idx)))
         else:
-            raise DecodingError('Invalid token character (' + str(char) + ') at position ' + str(self.idx) + '.')
+            raise bencodepy.DecodingError('Invalid token character ({0}) at position {1}.'.format(str(char), str(self.idx)))
 
     def decode(self) -> Iterable:
         """Start of decode process. Returns final results."""
         if self.data[0:1] not in (b'd', b'l'):
-            self.__wrap_with_tuple()
+            return self.__wrap_with_tuple()
         return self.__parse()
 
     def __wrap_with_tuple(self) -> tuple:
