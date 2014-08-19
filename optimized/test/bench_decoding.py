@@ -1,11 +1,9 @@
-
 from os import listdir
 from os import path
 import cProfile
 import pstats
 
-#pyCharm detects unresolved import
-import decoder
+from bencodepy import decoder
 
 folder_path = '../tests/torrent meta testing samples/'
 
@@ -26,11 +24,9 @@ print('Avg. file size: %.2f KB' % avg_size)
 print('Number of files (in memory): %i' % num_of_files)
 print('Total size processed: %.3f MB' % (avg_size * num_of_files / 1024))
 
+
 def bench():
     results = [decoder.decode(d) for d in file_data]
-
-
-
 
 
 cProfile.run('bench()', 'stats')

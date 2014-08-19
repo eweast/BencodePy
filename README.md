@@ -69,9 +69,8 @@ a python tuple of `('ItemA', 'ItemB')`.
   
 
 ##TODO
-1. Decode is currently limited to Bencoded data that start with a root dictionary (`b'd...'`).
-2. Unit tests for decoder.
-3. Benchmarks for encoding.
+1. Benchmarks for encoding.
+2. Determine method of distributing the optimized (cythonized) version of bencodepy.
 
 ##License
 Copyright © 2014 by Eric Weast
