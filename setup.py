@@ -7,9 +7,9 @@ if os.path.isfile('README.md'):
         description = f.read()
 
 setup(
-    name='bencodepy_opti',
+    name='bencodepy',
     version='0.9.4',
-    packages=['bencodepy_opti'],
+    packages=['bencodepy'],
     url='https://github.com/eweast/bencodepy_opti',
     license='GPLv2',
     author='Eric Weast',
