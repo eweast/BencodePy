@@ -19,13 +19,23 @@ for i, obj in enumerate(python_data):
     print('Sample data {0}: {1} .'.format(i, obj))
 
 
-python_data *= 1650
+python_data *= 6000
 print('Number of objects to decode: {0}.'.format(len(python_data)))
 
-
+results = []
 def bench():
+    global results
     results = [encode(r) for r in python_data]
 
+def print_size():
+    global results
+    s = 0
+    for r in results:
+        s += len(r)
+    print('Total encode size: %.3f MB.' % (s/1024/1024))
+
 cProfile.run('bench()', 'encode_stats')
+print_size()
 p = pstats.Stats('encode_stats')
 p.strip_dirs().sort_stats('tottime').print_stats()
+

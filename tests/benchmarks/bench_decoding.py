@@ -15,7 +15,7 @@ for file_name in listdir(folder_path):
         data = f.read()
         file_data.append(data)
 
-file_data *= 800
+file_data *= 1
 
 num_of_files = len(file_data)
 avg_size = sum(file_sizes) / 1024 / len(file_sizes)
@@ -27,6 +27,7 @@ print('Total size processed: %.3f MB' % (avg_size * num_of_files / 1024))
 
 def bench():
     results = [decode(d) for d in file_data]
+
 
 cProfile.run('bench()', 'decode_stats')
 p = pstats.Stats('decode_stats')

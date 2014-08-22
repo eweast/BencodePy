@@ -20,7 +20,7 @@ print (bencoded_data)
 >>> b'd4:keyA6:valueAe'
 ```
 
-Encode Mappings:
+######Encode Mapping
 
 Python Type*  | Bencode Type
 ------------- | -------------
@@ -51,7 +51,7 @@ my_file_path = 'c:\whatever'
 my_ordred_dict = decode_from_file(my_file_path)
 ```
 
-Decode Mappings:
+######Decode Mapping
 
 Bencode Type | Python Type
 ------------- | -------------
@@ -67,8 +67,18 @@ Decode methods will always return an iterable. If the root element of the bencod
 list, `decode()` will wrap the all bencode elements in a tuple. Thus input data of `b'5:ItemA5:ItemB'` would yield
 a python tuple of `('ItemA', 'ItemB')`.
   
+##Performance
 
-##TODO
+Hardware: Xeon 1270v3 w/ 16GB RAM
+System: Windows 7 Pro, Python 3.4
+
+Method: The benchmarks measure the time taken to encode/decode objects in memory; thus disk IO is excluded. The sample
+data used was 5 torrent files where were multiplied (in memory) to generate a sufficient number of elements. The
+source code is available under tests/benchmarks.
+
+
+
+##Roadmap
 1. Determine method of distributing the optimized (cythonized) version of bencodepy.
 2. Consider async file read; I may hold off until someone creates a request on the Github issue tracker.
 
