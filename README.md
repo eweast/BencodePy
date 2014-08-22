@@ -70,13 +70,17 @@ a python tuple of `('ItemA', 'ItemB')`.
 ##Performance
 
 Hardware: Xeon 1270v3 w/ 16GB RAM
-System: Windows 7 Pro, Python 3.4
+OS: Windows 7 Pro
+Python: CPython 3.4
 
 Method: The benchmarks measure the time taken to encode/decode objects in memory; thus disk IO is excluded. The sample
-data used was 5 torrent files where were multiplied (in memory) to generate a sufficient number of elements. The
-source code is available under tests/benchmarks.
+data used were 5 torrent files that were multiplied (in memory) to generate a sufficient number of elements. The
+source code is available under `tests/benchmarks` in this repository.
 
+![alt text](https://github.com/eweast/BencodePy/tree/master/misc/decode_graph.jpg "Decode Benchmark Graph")
+![alt text](https://github.com/eweast/BencodePy/tree/master/misc/encode_graph.jpg "Encode Benchmark Graph")
 
+These benchmarks are neither scientific or rigorous nor are they meant to be. As always, YMMV.
 
 ##Roadmap
 1. Determine method of distributing the optimized (cythonized) version of bencodepy.
