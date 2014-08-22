@@ -80,7 +80,7 @@ source code is available under `tests/benchmarks` in this repository.
 ![alt text](https://raw.githubusercontent.com/eweast/BencodePy/master/misc/decode_graph.jpg "Decode Benchmark Graph")
 ![alt text](https://raw.githubusercontent.com/eweast/BencodePy/master/misc/encode_graph.jpg "Encode Benchmark Graph")
 
-These benchmarks are neither scientific or rigorous nor are they meant to be. As always, YMMV.
+These benchmarks are neither scientific or rigorous. As always, YMMV.
 
 ##Roadmap
 1. Determine method of distributing the optimized (cythonized) version of bencodepy.
