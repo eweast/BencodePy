@@ -77,8 +77,8 @@ Method: The benchmarks measure the time taken to encode/decode objects in memory
 data used were 5 torrent files that were multiplied (in memory) to generate a sufficient number of elements. The
 source code is available under `tests/benchmarks` in this repository.
 
-![alt text](https://github.com/eweast/BencodePy/tree/master/misc/decode_graph.jpg "Decode Benchmark Graph")
-![alt text](https://github.com/eweast/BencodePy/tree/master/misc/encode_graph.jpg "Encode Benchmark Graph")
+![alt text](https://raw.githubusercontent.com/eweast/BencodePy/master/misc/decode_graph.jpg "Decode Benchmark Graph")
+![alt text](https://raw.githubusercontent.com/eweast/BencodePy/master/misc/encode_graph.jpg "Encode Benchmark Graph")
 
 These benchmarks are neither scientific or rigorous nor are they meant to be. As always, YMMV.
 
