@@ -20,7 +20,7 @@ print (bencoded_data)
 >>> b'd4:keyA6:valueAe'
 ```
 
-###Mappings
+Encode Mappings:
 
 Python Type*  | Bencode Type
 ------------- | -------------
@@ -51,7 +51,7 @@ my_file_path = 'c:\whatever'
 my_ordred_dict = decode_from_file(my_file_path)
 ```
 
-###Mapping:
+Decode Mappings:
 
 Bencode Type | Python Type
 ------------- | -------------
@@ -69,8 +69,8 @@ a python tuple of `('ItemA', 'ItemB')`.
   
 
 ##TODO
-1. Benchmarks for encoding.
-2. Determine method of distributing the optimized (cythonized) version of bencodepy.
+1. Determine method of distributing the optimized (cythonized) version of bencodepy.
+2. Consider async file read; I may hold off until someone creates a request on the Github issue tracker.
 
 ##License
 Copyright © 2014 by Eric Weast

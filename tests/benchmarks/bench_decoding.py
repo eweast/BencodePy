@@ -28,6 +28,6 @@ print('Total size processed: %.3f MB' % (avg_size * num_of_files / 1024))
 def bench():
     results = [decode(d) for d in file_data]
 
-cProfile.run('bench()', 'stats')
-p = pstats.Stats('stats')
+cProfile.run('bench()', 'decode_stats')
+p = pstats.Stats('decode_stats')
 p.strip_dirs().sort_stats('tottime').print_stats()
