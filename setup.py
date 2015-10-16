@@ -8,7 +8,7 @@ if os.path.isfile('README.md'):
 
 setup(
     name='bencodepy',
-    version='0.9.4',
+    version='0.9.5',
     packages=['bencodepy'],
     url='https://github.com/eweast/bencodepy_opti',
     license='GPLv2',

@@ -78,7 +78,9 @@ data used were 5 torrent files that were multiplied (in memory) to generate a su
 source code is available under `tests/benchmarks` in this repository.
 
 ![alt text](https://raw.githubusercontent.com/eweast/BencodePy/master/misc/decode_graph.jpg "Decode Benchmark Graph")
-![alt text](https://raw.githubusercontent.com/eweast/BencodePy/master/misc/encode_graph.jpg "Encode Benchmark Graph")
+
+The new encoder benchmarks have not been graphed yet. It can process 10,000 in about 1 second and 30,000 in 3. Again,
+this is using multiple small torrent files. Just a handful of large files (ie MB range) can take well over a second.
 
 These benchmarks are neither scientific or rigorous. As always, YMMV.
 
@@ -87,6 +89,6 @@ These benchmarks are neither scientific or rigorous. As always, YMMV.
 2. Consider async file read; I may hold off until someone creates a request on the Github issue tracker.
 
 ##License
-Copyright © 2014 by Eric Weast
+Copyright © 2014, 2015 by Eric Weast
 
 Licensed under the [GPLv2](https://www.gnu.org/licenses/gpl-2.0.html "gnu.org")
