@@ -15,7 +15,7 @@ class Decoder:
         if len(b) != i:
             raise bencodepy.DecodingError(
                 "Incorrect byte length returned between indexes of {0} and {1}. Possible unexpected End of File."
-                .format(str(self.idx), str(self.idx - i)))
+                    .format(str(self.idx), str(self.idx - i)))
         return b
 
     def __read_to(self, terminator: bytes) -> bytes:
@@ -46,7 +46,8 @@ class Decoder:
         elif char == b'':
             raise bencodepy.DecodingError('Unexpected End of File at index position of {0}.'.format(str(self.idx)))
         else:
-            raise bencodepy.DecodingError('Invalid token character ({0}) at position {1}.'.format(str(char), str(self.idx)))
+            raise bencodepy.DecodingError(
+                'Invalid token character ({0}) at position {1}.'.format(str(char), str(self.idx)))
 
     def decode(self) -> Iterable:
         """Start of decode process. Returns final results."""
